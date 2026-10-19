@@ -10,7 +10,7 @@ const articlesController = {
       if (!auteur || !titre || !description) {
         return res
           .status(httpCode.BAD_REQUEST)
-          .json({ message: "Tous les champs sont requis!" });
+          .json({ message: "Tous les champs sont requis" });
       }
 
       const article = await prisma.article.create({
