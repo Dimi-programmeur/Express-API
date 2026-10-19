@@ -6,7 +6,7 @@ const articlesController = {
   postArticle: async (req, res) => {
     try {
       const { auteur, titre, description } = req.body;
-      const userId = req.user.id
+      const userId = req.user.id;
       if (!auteur || !titre || !description) {
         return res
           .status(httpCode.BAD_REQUEST)
@@ -19,40 +19,26 @@ const articlesController = {
           auteur,
           titre,
           description,
-<<<<<<< HEAD
-          userId: userId
-        }
-=======
+          userId: userId,
         },
->>>>>>> 855fd6d (feat: ajout de la route /google pour connexion avec compte google...)
       });
 
       return res
         .status(httpCode.CREATED)
         .json({ message: "Articles créé avec succès!", article });
     } catch (error) {
-<<<<<<< HEAD
-        return res.status(httpCode.INTERNAL_SERVER_ERROR).json({message: error.message})
-=======
       return res
         .status(httpCode.INTERNAL_SERVER_ERROR)
-        .json({ message: "Erreur du serveur!" });
->>>>>>> 855fd6d (feat: ajout de la route /google pour connexion avec compte google...)
+        .json({ message: error.message });
     }
   },
 
   getArticles: async (req, res) => {
     try {
-<<<<<<< HEAD
-        const articles = await prisma.article.findMany({
-            orderBy : {postAt: 'desc'},
-            include: {commentaire: true}
-        })
-=======
       const articles = await prisma.article.findMany({
         orderBy: { postAt: "desc" },
+        include: { commentaire: true },
       });
->>>>>>> 855fd6d (feat: ajout de la route /google pour connexion avec compte google...)
 
       if (articles.length === 0) {
         return res
