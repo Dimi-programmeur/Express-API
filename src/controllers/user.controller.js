@@ -262,7 +262,7 @@ const userController = {
       if (!user || user.refreshToken !== refreshToken) {
         return res
           .status(httpCode.UNAUTHORIZED)
-          .json({ message: "Refresh token invalide ou expiré" });
+          .json({ message: "refresh token invalide ou expiré" });
       }
       const newAccesToken = generateAccesToken(user);
 
