@@ -1,0 +1,84 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+<<<<<<< HEAD
+enum Role{
+  USER
+  ADMIN
+=======
+model User {
+  id              String @id @default(uuid()) @map("_id") 
+  googleId        String?
+  name            String
+  email           String @unique
+  password        String?
+  refreshToken    String?
+  creatAt         DateTime @default(now()) 
+    
+>>>>>>> 855fd6d (feat: ajout de la route /google pour connexion avec compte google...)
+}
+
+//modele article(id, auteur, titre, description, postAt)
+//Crud des article
+
+model Article {
+  id              String @id @default(uuid()) @map("_id")
+  auteur          String
+  titre           String
+  description     String
+  postAt          DateTime @default(now())
+
+  //relation
+  userId          String //cle etrange
+  user            User @relation(fields: [userId], references: [id], onDelete:Cascade)
+
+  commentaire    Commentaire[]
+
+}
+
+model User {
+  id              String @id @default(uuid()) @map("_id") 
+  name            String
+  email           String @unique
+  password        String? 
+  googleId        String? @unique
+  refreshToken    String?
+  creatAt         DateTime @default(now()) 
+  role            Role  @default(USER)  
+
+
+  article         Article[]
+  commetaire      Commentaire[]
+  
+}
+
+
+model Commentaire {
+  id          String @id @default(uuid()) @map("_id")
+  content     String
+  postAt      DateTime @default(now())
+
+
+
+  //relation
+  userId      String
+  user        User @relation(fields: [userId], references: [id], onDelete:Cascade)
+
+
+  articleId    String
+  article      Article @relation(fields: [articleId], references: [id], onDelete:Cascade)
+}
+
