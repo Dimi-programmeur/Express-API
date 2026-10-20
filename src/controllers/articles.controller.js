@@ -25,7 +25,7 @@ const articlesController = {
 
       return res
         .status(httpCode.CREATED)
-        .json({ message: "Articles créé avec succès!", article });
+        .json({ message: "Articles créés avec succès!", article });
     } catch (error) {
       return res
         .status(httpCode.INTERNAL_SERVER_ERROR)
@@ -43,7 +43,7 @@ const articlesController = {
       if (articles.length === 0) {
         return res
           .status(httpCode.NOT_FOUND)
-          .json({ message: "Aucun article pour le moment!" });
+          .json({ message: "Aucun article pour le moment!☠️" });
       }
 
       return res
