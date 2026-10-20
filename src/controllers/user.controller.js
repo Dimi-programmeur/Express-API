@@ -129,6 +129,7 @@ const userController = {
         .json({ message: error.message });
     }
   },
+
   //login
   login: async (req, res) => {
     try {
